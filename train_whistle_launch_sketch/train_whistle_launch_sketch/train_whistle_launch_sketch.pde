@@ -1,21 +1,31 @@
 //train whistle Sound Effect from <a href="https://pixabay.com/sound-effects/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=102834">Pixabay</a>
 
 //import the sound library
-
+import processing.sound.*;
 Train train;
 
 //declare a SoundFile
-
+SoundFile ding;
+float timerValue;
+float timerLength = 50;
 
 void setup() {
   size(400, 400);
+   background(255);
   //load the sound effect from the data folder
+  ding = new SoundFile(this, "pling.wav");
 
   train = new Train(random(100, 300), random(0.5, 2));
 }
 
 void draw() {
-  background(255);
+  timerValue += 1;
+  if (timerValue > timerLength){
+   timerValue=0; 
+    background(random(255),random(255),random(255));
+    ding.play();
+  }
+ 
 
   train.update();
 }
